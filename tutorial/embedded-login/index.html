@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom UI | ForgeRock JavaScript SDK Samples</title>
+  <link rel="shortcut icon" href="../_static/img/fr-ico.png" type="image/png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 2rem;
+    }
+    #steps {
+      position: relative;
+    }
+    #steps > div {
+      left: -20000px;
+      position: absolute;
+    }
+    #steps > div.active {
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="steps">
+    <div id="loader" class="active">Loading...</div>
+
+    <!-- MARK AUTH -->
+    <div id="UsernamePassword">
+      <input class="form-control" type="text" placeholder="Username" />
+      <input class="form-control" type="password" placeholder="Password" />
+      <button class="btn btn-primary">Sign In</button>
+    </div>
+
+    <!-- MARK REGISTER -->
+    <div id="Registration">
+      <input class="form-control" type="text" placeholder="Username" />
+      <input class="form-control" type="password" placeholder="Password" />
+      <div id="attributes">  
+      </div>
+      <button class="btn btn-primary">Sign In</button>
+    </div>
+
+    <div id="UsernameOnly">
+      <input class="form-control" type="text" placeholder="Username" />
+      <button class="btn btn-primary">Sign In</button>
+    </div>
+
+    <!-- MARK SELFSERVICE: handle password only-->
+    <div id="PasswordOnly">
+      <div id="PageDescription"></div>
+      <input class="form-control" type="password" placeholder="Password" />
+      <button class="btn btn-primary">Next</button>
+    </div>
+
+    <!-- DONE SUSPEND-->
+    <div id="Suspended">
+      <div id="SuspendMessage"></div>
+    </div>
+
+    <!-- DONE SOCIAL 3: add UI to select IDP -->
+    <div id="SelectIdPCallback">
+      <select id="SelectElement" class="form-control" id="provider">
+      </select>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+
+    <!-- DONE DEVICE / ChoiceCallback -->
+    <div id="Choice">
+      <select id="SelectElement" class="form-control" id="provider">
+      </select>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+
+    <div id="User">
+      <p>Your user information:
+        <pre></pre>
+      </p>
+      <button class="btn btn-primary" id="logout">Sign Out</button>
+      <!-- DONE SELFSERVICE: add Pwd change button -->
+      <button class="btn btn-primary" id="changepwd">Change Password</button>
+    </div>
+
+    <div id="Error">
+      <p>Error code: <span></span></p>
+      <p><a href="javascript:nextStep()">Start over</a></p>
+    </div>
+
+    <div id="Fatal">
+      <p>Something unexpected happened. Check the console for details.</p>
+      <p><a href="/embedded-login">Start over</a></p>
+    </div>
+  </div>
+
+  <script src="../_static/js/index.js"></script>
+  <script src="index.js"></script>
+
+  
+</body>
+</html>

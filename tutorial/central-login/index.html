@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom UI | ForgeRock JavaScript SDK Samples</title>
+  <link rel="shortcut icon" href="../_static/img/fr-ico.png" type="image/png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 2rem;
+    }
+    #steps {
+      position: relative;
+    }
+    #steps > * {
+      left: -20000px;
+      position: absolute;
+    }
+    #steps > .active {
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="steps">
+    <div class="active">
+      <button id="loginBtn" class="btn btn-primary">Login</button>
+      <button id="forceRenewBtn" class="btn btn-primary">Force Renew</button>
+    </div>
+    <div id="User">
+      <p>Your user information:
+        <pre></pre>
+      </p>
+      <button class="btn btn-primary">Sign Out</button>
+    </div>
+    <div id="Error">
+      <p>Error code: <span></span></p>
+      <p><a href="javascript:nextStep()">Start over</a></p>
+    </div>
+  </div>
+
+  <script src="../_static/js/index.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

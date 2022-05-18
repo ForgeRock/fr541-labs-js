@@ -1,0 +1,19 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "ForgeRock SDK FR-541 JS Tutorial",
+  "main": "index.js",
+  "dependencies": {
+    "@forgerock/javascript-sdk": "^3.3.0",
+    "http-server": "^0.12.3",
+    "shx": "^0.3.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "start": "http-server . -c1 -p 8443 --cors.origin https://openam-fr300-unigeza.forgeblocks.com --cors.credentials --ssl --cert certs/fec.crt --key certs/fec.key ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
