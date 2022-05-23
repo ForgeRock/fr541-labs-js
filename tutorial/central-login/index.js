@@ -38,18 +38,18 @@ const showUser = (user) => {
     document.querySelector('#User pre').innerHTML = JSON.stringify(user, null, 2);
     const panel = document.querySelector('#User');
 
-    //DONE CENTRAL: signout
+    //TODO CENTRAL: signout
     panel.querySelector('.btn').addEventListener('click', () => {
-        logout();
+
+    
     });
     showStep('User');
 }
 
 const logout = async () => {
     try {
-        //DONE CENTRAL: logout
-        await forgerock.FRUser.logout();
-        location.assign(`${document.location.origin}/central-login/`);
+        //TODO CENTRAL: logout
+       
     } catch (error) {
         console.error(error);
     }
@@ -62,20 +62,17 @@ const authorize = async (code, state) => {
      * be passed in to complete the OAuth flow giving the user access
      */
 
-    //DONE CENTRAL: resume
-    await forgerock.TokenManager.getTokens({ query: { code, state } });
-    const user = await forgerock.UserManager.getCurrentUser();
+    //TODO CENTRAL: resume
+
     showUser(user);
 }
 
 
 async function displayPage() {
 
-    //DONE CENTRAL: login
+    //TODO CENTRAL: login
     document.querySelector('#loginBtn').addEventListener('click', async () => {
-        await forgerock.TokenManager.getTokens({ login: 'redirect' });
-        const user = await forgerock.UserManager.getCurrentUser();
-        showUser(user);
+        
     });
     
     document.querySelector('#forceRenewBtn').addEventListener('click', async () => {
