@@ -140,15 +140,8 @@ const handlers = {
         const isLocationRequired = deviceCollectorCB.isLocationRequired();
         const isMetadataRequired = deviceCollectorCB.isMetadataRequired();
 
-        const device = new forgerock.FRDevice(/* DONE CUSTOMDEVICE */
-            {
-                // Collect just the presence of Arial and Helvetica
-                fontNames: ['Arial', 'Helvetica'],
-                // Do not collect any display properties
-                displayProps: [],
-                // Just collect User Agent
-                browserProps: ['userAgent']
-            }
+        const device = new forgerock.FRDevice(/*TODO CUSTOMDEVICE */
+            
         );       
 
         const profile = await device.getProfile({
