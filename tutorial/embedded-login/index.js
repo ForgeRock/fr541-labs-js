@@ -120,19 +120,8 @@ const handlers = {
 
     },
 
-    //DONE WEBAUTHN: handlers
-    WebAuthnReg: async (step) => {
-        //registering a new device
-        step = await forgerock.FRWebAuthn.register(step);
-        nextStep(step);
-    },
-
-    WebAuthnAuthn: async (step) => {
-        // Authenticating with a registered device
-        step = await forgerock.FRWebAuthn.authenticate(step);
-        nextStep(step);
-
-    },
+    //TODO WEBAUTHN: handlers
+   
 
     //TODO DEVICE: handle DeviceCallback
     
@@ -210,13 +199,9 @@ const getStage = (step) => {
         return "SelectIdPCallback"
     }
 
-    //DONE WEBAUTHN: webauthn steps
+    //TODO WEBAUTHN: webauthn steps
     const webauthnType = forgerock.FRWebAuthn.getWebAuthnStepType(step);
-    if (webauthnType === forgerock.WebAuthnStepType.Registration) {
-        return "WebAuthnReg";
-    } else if (webauthnType === forgerock.WebAuthnStepType.Authentication) {
-        return "WebAuthnAuthn";
-    }
+    
 
     //DONE DEVICE: device step
     const deviceCollectorCBs = step.getCallbacksOfType('DeviceProfileCallback');
