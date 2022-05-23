@@ -134,46 +134,14 @@ const handlers = {
 
     },
 
-    //DONE DEVICE: handle DeviceCallback
-    Device: async (step) => {
-        const deviceCollectorCB = step.getCallbackOfType('DeviceProfileCallback');
-        const isLocationRequired = deviceCollectorCB.isLocationRequired();
-        const isMetadataRequired = deviceCollectorCB.isMetadataRequired();
-
-        const device = new forgerock.FRDevice(/*TODO CUSTOMDEVICE */
+    //TODO DEVICE: handle DeviceCallback
+    
+                                    /* TODO CUSTOMDEVICE */
             
-        );       
+       
 
-        const profile = await device.getProfile({
-            location: isLocationRequired,
-            metadata: isMetadataRequired
-        });
+    //TODO DEVICE: handle ChoiceCallback
 
-        console.log("device profile: " + profile);
-
-        deviceCollectorCB.setProfile(profile);
-        nextStep(step);
-    },
-
-    //DONE DEVICE: handle ChoiceCallback
-    Choice: (step) => {
-        const panel = document.querySelector('#Choice');
-        const selectElement = panel.querySelector('#SelectElement');
-
-        const choiceCallback = step.getCallbackOfType('ChoiceCallback');
-
-        choiceCallback.getChoices().forEach(p => {
-            const opt = document.createElement('option');
-            opt.value = p;
-            opt.innerHTML = p;
-            selectElement.appendChild(opt);
-        })
-
-        panel.querySelector('.btn').addEventListener('click', () => {
-            choiceCallback.setChoiceValue(selectElement.value);
-            nextStep(step);
-        })
-    },
 
     Error: (step) => {
         document.querySelector('#Error span').innerHTML = step.getCode();
@@ -252,15 +220,11 @@ const getStage = (step) => {
 
     //DONE DEVICE: device step
     const deviceCollectorCBs = step.getCallbacksOfType('DeviceProfileCallback');
-    if (deviceCollectorCBs.length) {
-        return "Device";
-    }
+   
 
-    //DONE DEVICE: choice step
+    //TODO DEVICE: choice step
     const choiceCallbacks = step.getCallbacksOfType('ChoiceCallback');
-    if (choiceCallbacks.length) {
-        return "Choice";
-    }
+    
 
     //DONE SOCIAL: redirect
     const redirectCallbacks = step.getCallbacksOfType('RedirectCallback');
