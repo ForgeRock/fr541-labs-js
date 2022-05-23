@@ -99,26 +99,8 @@ const handlers = {
         suspendMessageDiv.innerText = step.getCallbackOfType('SuspendedTextOutputCallback').getMessage();
     },
 
-    //DONE SOCIAL: selectidp
-    SelectIdPCallback: (step) => {
-        const panel = document.querySelector('#SelectIdPCallback');
-        const selectElement = panel.querySelector('#SelectElement');
+    //TODO SOCIAL: selectidp
 
-        const selectIdPCallback = step.getCallbackOfType('SelectIdPCallback');
-
-        selectIdPCallback.getProviders().forEach(p => {
-            const opt = document.createElement('option');
-            opt.value = p.provider;
-            opt.innerHTML = p.provider;
-            selectElement.appendChild(opt);
-        })
-
-        panel.querySelector('.btn').addEventListener('click', () => {
-            selectIdPCallback.setProvider(selectElement.value);
-            nextStep(step);
-        })
-
-    },
 
     //TODO WEBAUTHN: handlers
    
@@ -193,17 +175,15 @@ const getStage = (step) => {
         return "PasswordOnly";
     }
 
-    //DONE SOCIAL: idpcallback
+    //TODO SOCIAL: selectidpcallback
     const selectIdPCallbacks = step.getCallbacksOfType('SelectIdPCallback');
-    if (selectIdPCallbacks.length) {
-        return "SelectIdPCallback"
-    }
+
 
     //TODO WEBAUTHN: webauthn steps
     const webauthnType = forgerock.FRWebAuthn.getWebAuthnStepType(step);
     
 
-    //DONE DEVICE: device step
+    //TODO DEVICE: device step
     const deviceCollectorCBs = step.getCallbacksOfType('DeviceProfileCallback');
    
 
@@ -211,11 +191,9 @@ const getStage = (step) => {
     const choiceCallbacks = step.getCallbacksOfType('ChoiceCallback');
     
 
-    //DONE SOCIAL: redirect
+    //TODO SOCIAL: redirect
     const redirectCallbacks = step.getCallbacksOfType('RedirectCallback');
-    if (redirectCallbacks.length) {
-        forgerock.FRAuth.redirect(step);
-    }
+  
 
     //DONE SUSPENDED: step
     const suspendCallbacks = step.getCallbacksOfType('SuspendedTextOutputCallback');
@@ -279,27 +257,26 @@ const logout = async () => {
 
 async function displayPage() {
 
-    // DONE SOCIAL: url
     const url = new URL(window.location.href);
-    const code = url.searchParams.get('code');
-    const state = url.searchParams.get('state');
+    
+    // TODO SOCIAL: urlparam
+   
 
     //DONE SUSPENDED: urlparam
     const suspId = url.searchParams.get('suspendedId');
 
-    if (code && state) {
-        const step = await forgerock.FRAuth.resume(window.location.href);
-        handleStep(step);
-
     //DONE SUSPENDED: resume
-    } else if (suspId) {
+    if (suspId) {
         const step = await forgerock.FRAuth.next(null, {
             query: {
                 suspendedId: suspId
             }
         });
         handleStep(step);
-    } else {
+    } 
+    //TODO SOCIAL
+    
+    else {
         nextStep();
     }
 }
