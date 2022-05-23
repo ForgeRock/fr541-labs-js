@@ -71,19 +71,8 @@ const handlers = {
     //TODO SUSPENDED: username
 
 
-    //DONE SELFSERVICE: handler
-    PasswordOnly: (step) => {
-        const panel = document.querySelector('#PasswordOnly');
-        const pageDescription = panel.querySelector('#PageDescription');
-        pageDescription.innerText = step.getDescription();
-        panel.querySelector('input[type=password]').value = "";
-
-        panel.querySelector('.btn').addEventListener('click', () => {
-            const passwordCallback = step.getCallbackOfType('PasswordCallback');
-            passwordCallback.setPassword(panel.querySelector('input[type=password]').value);
-            nextStep(step);
-        })
-    },
+    //TODO SELFSERVICE: handler
+   
 
     //TODO SUSPENDED: handler
    
@@ -128,11 +117,9 @@ const showUser = (user) => {
     panel.querySelector('#logout').addEventListener('click', () => {
         logout();
     });
-    //DONE SELFSERVICE: clicklistener
+    //TODO SELFSERVICE: clicklistener
     panel.querySelector('#changepwd').addEventListener('click', () => {
-        const selfServiceStepOptions = { tree: 'fr541-password', middleware: [forceAuthMiddleware] };
-        forgerock.FRAuth.next(undefined, selfServiceStepOptions).then(handleStep).catch(handleFatalError);
-
+        
     });
     showStep('User')
 }
@@ -157,10 +144,8 @@ const getStage = (step) => {
     //TODO SUSPENDED: namecallback
 
 
-    //DONE SELFSERVICE: pwdonly
-    if (passwordCallbacks.length) {
-        return "PasswordOnly";
-    }
+    //TODO SELFSERVICE: pwdonly
+
 
     //TODO SOCIAL: selectidpcallback
     const selectIdPCallbacks = step.getCallbacksOfType('SelectIdPCallback');
