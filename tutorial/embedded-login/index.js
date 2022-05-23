@@ -100,9 +100,8 @@ const showUser = (user) => {
 
 const getStage = (step) => {
 
-    //DONE STAGE: handle
-    const stage = step.getStage();
-    if (stage == "namepass") { return "UsernamePassword"; }
+    //TODO STAGE: handle
+
     
     //TODO REGISTER: stage
     
