@@ -116,19 +116,11 @@ const handlers = {
             selectElement.appendChild(opt);
         })
 
-<<<<<<< HEAD
         panel.querySelector('.btn').addEventListener('click', () => {
             selectIdPCallback.setProvider(selectElement.value);
             nextStep(step);
         })
-=======
-    //TODO DEVICE: handle DeviceCallback
     
-    /* TODO CUSTOMDEVICE */
-            
-       
->>>>>>> 5d987c6 (fixed self-service password change, now using the right tree. Thanks, George)
-
     },
 
     //DONE WEBAUTHN: handlers
@@ -355,7 +347,6 @@ async function displayPage() {
     //DONE SUSPENDED: urlparam
     const suspId = url.searchParams.get('suspendedId');
 
-<<<<<<< HEAD
     if (code && state) {
         const step = await forgerock.FRAuth.resume(window.location.href);
         handleStep(step);
@@ -371,16 +362,7 @@ async function displayPage() {
     } else {
         nextStep();
     }
-=======
-    //TODO SUSPENDED: resume
-  
     
-    //TODO SOCIAL
-    
- 
-    nextStep();
-    
->>>>>>> 5d987c6 (fixed self-service password change, now using the right tree. Thanks, George)
 }
 
 configForgerock();
