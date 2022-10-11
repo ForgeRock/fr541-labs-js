@@ -226,9 +226,10 @@ const nextStep = (step, config) => {
 
 const forceAuthMiddleware = (req, action, next) => {
     switch (action.type) {
+        case 'AUTHENTICATE':
         case 'START_AUTHENTICATE':  //MARK SELFSERVICE: middleware 1
             req.url.searchParams.set('ForceAuth', 'true');  //MARK SELFSERVICE: middleware 2
-            break;
+        break;
     }
     next();
 }
