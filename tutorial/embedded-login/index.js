@@ -23,6 +23,8 @@ const configForgerock = () => {
     });
 }
 
+
+
 // Define custom handlers to render and submit each expected step
 const handlers = {
 
@@ -88,7 +90,8 @@ const handlers = {
         panel.querySelector('.btn').addEventListener('click', () => {
             const passwordCallback = step.getCallbackOfType('PasswordCallback');
             passwordCallback.setPassword(panel.querySelector('input[type=password]').value);
-            nextStep(step);
+            const selfServiceStepOptions = { tree: 'fr541-password', middleware: [forceAuthMiddleware] };
+            nextStep(step, selfServiceStepOptions);
         })
     },
 
@@ -113,10 +116,18 @@ const handlers = {
             selectElement.appendChild(opt);
         })
 
+<<<<<<< HEAD
         panel.querySelector('.btn').addEventListener('click', () => {
             selectIdPCallback.setProvider(selectElement.value);
             nextStep(step);
         })
+=======
+    //TODO DEVICE: handle DeviceCallback
+    
+    /* TODO CUSTOMDEVICE */
+            
+       
+>>>>>>> 5d987c6 (fixed self-service password change, now using the right tree. Thanks, George)
 
     },
 
@@ -210,8 +221,7 @@ const showUser = (user) => {
     //DONE SELFSERVICE: clicklistener
     panel.querySelector('#changepwd').addEventListener('click', () => {
         const selfServiceStepOptions = { tree: 'fr541-password', middleware: [forceAuthMiddleware] };
-        forgerock.FRAuth.next(undefined, selfServiceStepOptions).then(handleStep).catch(handleFatalError);
-
+        nextStep(undefined, selfServiceStepOptions);
     });
     showStep('User')
 }
@@ -312,8 +322,8 @@ const handleFatalError = (err) => {
 }
 
 // Get the next step using the FRAuth API
-const nextStep = (step) => {
-    forgerock.FRAuth.next(step).then(handleStep).catch(handleFatalError);
+const nextStep = (step, config) => {
+    forgerock.FRAuth.next(step, config).then(handleStep).catch(handleFatalError);
 }
 
 
@@ -345,6 +355,7 @@ async function displayPage() {
     //DONE SUSPENDED: urlparam
     const suspId = url.searchParams.get('suspendedId');
 
+<<<<<<< HEAD
     if (code && state) {
         const step = await forgerock.FRAuth.resume(window.location.href);
         handleStep(step);
@@ -360,6 +371,16 @@ async function displayPage() {
     } else {
         nextStep();
     }
+=======
+    //TODO SUSPENDED: resume
+  
+    
+    //TODO SOCIAL
+    
+ 
+    nextStep();
+    
+>>>>>>> 5d987c6 (fixed self-service password change, now using the right tree. Thanks, George)
 }
 
 configForgerock();
