@@ -31,38 +31,7 @@ const configForgerock = () => {
 
 // Define custom handlers to render and submit each expected step
 const handlers = {
-  //DONE REGISTER: handler
-  Registration: (step) => {
-    const panel = document.querySelector("#Registration");
-    const attrdiv = panel.querySelector("#attributes");
-    const attrCallbacks = step.getCallbacksOfType(
-      "StringAttributeInputCallback"
-    );
-    console.log(attrCallbacks);
-
-    attrCallbacks.forEach((ac) => {
-      const attrinput = document.createElement("input");
-      attrinput.placeholder = ac.getPrompt();
-      attrinput.id = ac.getName();
-      attrdiv.appendChild(attrinput);
-    });
-
-    panel.querySelector(".btn").addEventListener("click", () => {
-      const nameCallback = step.getCallbackOfType("NameCallback");
-      const passwordCallback = step.getCallbackOfType("PasswordCallback");
-
-      nameCallback.setName(panel.querySelector("input[type=text]").value);
-      passwordCallback.setPassword(
-        panel.querySelector("input[type=password]").value
-      );
-
-      attrCallbacks.forEach((ac) => {
-        ac.setInputValue(attrdiv.querySelector("#" + ac.getName()).value);
-      });
-
-      nextStep(step);
-    });
-  },
+  //TODO REGISTER: handler
 
   //DONE AUTH: handler
   UsernamePassword: (step) => {
@@ -133,10 +102,7 @@ const getStage = (step) => {
     return "UsernamePassword";
   }
 
-  //DONE REGISTER: stage
-  if (stage == "Registration") {
-    return "Registration";
-  }
+  //TODO REGISTER: stage
 
   //DONE AUTH: step
   const usernameCallbacks = step.getCallbacksOfType("NameCallback");
