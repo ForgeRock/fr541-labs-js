@@ -271,12 +271,8 @@ async function displayPage() {
   //DONE SUSPENDED: urlparam
   const suspId = url.searchParams.get("suspendedId");
 
-  if (code && state) {
-    const step = await forgerock.FRAuth.resume(window.location.href);
-    handleStep(step);
-
-    //DONE SUSPENDED: resume
-  } else if (suspId) {
+  //DONE SUSPENDED: resume
+  if (suspId) {
     const step = await forgerock.FRAuth.next(null, {
       query: {
         suspendedId: suspId,
