@@ -166,21 +166,36 @@ const handlers = {
 
     console.log("device profile: " + profile);
 
-    //TODO DEVICE: handle DeviceCallback
-    
-                                    /* TODO CUSTOMDEVICE */
-            
-       
+    deviceCollectorCB.setProfile(profile);
+    nextStep(step);
+  },
 
-    //TODO DEVICE: handle ChoiceCallback
+  //DONE DEVICE: handle ChoiceCallback
+  Choice: (step) => {
+    const panel = document.querySelector("#Choice");
+    const selectElement = panel.querySelector("#SelectElement");
 
+    const choiceCallback = step.getCallbackOfType("ChoiceCallback");
 
-    Error: (step) => {
-        document.querySelector('#Error span').innerHTML = step.getCode();
-    },
+    choiceCallback.getChoices().forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.innerHTML = p;
+      selectElement.appendChild(opt);
+    });
 
-    [FATAL]: (step) => { }
-}
+    panel.querySelector(".btn").addEventListener("click", () => {
+      choiceCallback.setChoiceValue(selectElement.value);
+      nextStep(step);
+    });
+  },
+
+  Error: (step) => {
+    document.querySelector("#Error span").innerHTML = step.getCode();
+  },
+
+  [FATAL]: (step) => {},
+};
 
 // Show only the view for this handler
 const showStep = (handler) => {
@@ -248,13 +263,19 @@ const getStage = (step) => {
     return "SelectIdPCallback";
   }
 
-    //DONE DEVICE: device step
-    const deviceCollectorCBs = step.getCallbacksOfType('DeviceProfileCallback');
-   
+  //DONE WEBAUTHN: webauthn steps
+  const webauthnType = forgerock.FRWebAuthn.getWebAuthnStepType(step);
+  if (webauthnType === forgerock.WebAuthnStepType.Registration) {
+    return "WebAuthnReg";
+  } else if (webauthnType === forgerock.WebAuthnStepType.Authentication) {
+    return "WebAuthnAuthn";
+  }
 
-    //TODO DEVICE: choice step
-    const choiceCallbacks = step.getCallbacksOfType('ChoiceCallback');
-    
+  //DONE DEVICE: device step
+  const deviceCollectorCBs = step.getCallbacksOfType("DeviceProfileCallback");
+  if (deviceCollectorCBs.length) {
+    return "Device";
+  }
 
   //DONE DEVICE: choice step
   const choiceCallbacks = step.getCallbacksOfType("ChoiceCallback");
