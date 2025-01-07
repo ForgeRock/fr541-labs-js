@@ -33,20 +33,7 @@ const configForgerock = () => {
 const handlers = {
   //TODO REGISTER: handler
 
-  //DONE AUTH: handler
-  UsernamePassword: (step) => {
-    const panel = document.querySelector("#UsernamePassword");
-
-    panel.querySelector(".btn").addEventListener("click", () => {
-      const nameCallback = step.getCallbackOfType("NameCallback");
-      const passwordCallback = step.getCallbackOfType("PasswordCallback");
-      nameCallback.setName(panel.querySelector("input[type=text]").value);
-      passwordCallback.setPassword(
-        panel.querySelector("input[type=password]").value
-      );
-      nextStep(step);
-    });
-  },
+  //TODO AUTH: handler
 
   //TODO SUSPENDED: username
 
@@ -100,12 +87,7 @@ const getStage = (step) => {
 
   //TODO REGISTER: stage
 
-  //DONE AUTH: step
-  const usernameCallbacks = step.getCallbacksOfType("NameCallback");
-  const passwordCallbacks = step.getCallbacksOfType("PasswordCallback");
-  if (usernameCallbacks.length && passwordCallbacks.length) {
-    return "UsernamePassword";
-  }
+  //TODO AUTH: step
 
   //TODO SUSPENDED: namecallback
 
