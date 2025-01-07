@@ -79,15 +79,7 @@ const handlers = {
     });
   },
 
-  //DONE SUSPENDED: username
-  UsernameOnly: (step) => {
-    const panel = document.querySelector("#UsernameOnly");
-    panel.querySelector(".btn").addEventListener("click", () => {
-      const nameCallback = step.getCallbackOfType("NameCallback");
-      nameCallback.setName(panel.querySelector("input[type=text]").value);
-      nextStep(step);
-    });
-  },
+  //TODO SUSPENDED: username
 
   //DONE SELFSERVICE: handler
   PasswordOnly: (step) => {
@@ -109,14 +101,7 @@ const handlers = {
     });
   },
 
-  //DONE SUSPENDED: handler
-  Suspended: (step) => {
-    const panel = document.querySelector("#Suspended");
-    const suspendMessageDiv = panel.querySelector("#SuspendMessage");
-    suspendMessageDiv.innerText = step
-      .getCallbackOfType("SuspendedTextOutputCallback")
-      .getMessage();
-  },
+  //TODO SUSPENDED: handler
 
   //TODO SOCIAL: selectidp
 
@@ -183,10 +168,7 @@ const getStage = (step) => {
     return "UsernamePassword";
   }
 
-  //DONE SUSPENDED: namecallback
-  if (usernameCallbacks.length) {
-    return "UsernameOnly";
-  }
+  //TODO SUSPENDED: namecallback
 
   //DONE SELFSERVICE: pwdonly
   if (passwordCallbacks.length) {
@@ -203,13 +185,7 @@ const getStage = (step) => {
 
   //TODO SOCIAL: redirect
 
-  //DONE SUSPENDED: step
-  const suspendCallbacks = step.getCallbacksOfType(
-    "SuspendedTextOutputCallback"
-  );
-  if (suspendCallbacks.length) {
-    return "Suspended";
-  }
+  //TODO SUSPENDED: step
 
   return undefined;
 };
@@ -268,20 +244,11 @@ async function displayPage() {
   const url = new URL(window.location.href);
   // TODO SOCIAL: urlparam
 
-  //DONE SUSPENDED: urlparam
-  const suspId = url.searchParams.get("suspendedId");
+  //TODO SUSPENDED: urlparam
 
-  //DONE SUSPENDED: resume
-  if (suspId) {
-    const step = await forgerock.FRAuth.next(null, {
-      query: {
-        suspendedId: suspId,
-      },
-    });
-    handleStep(step);
-  } else {
-    nextStep();
-  }
+  //TODO SUSPENDED: resume
+  
+  nextStep();
 }
 
 configForgerock();
