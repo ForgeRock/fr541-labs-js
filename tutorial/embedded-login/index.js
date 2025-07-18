@@ -19,7 +19,7 @@ const configForgerock = () => {
     redirectUri: "https://sdkapp.example.com:8443/embedded-login/",
     scope: "openid profile address phone",
     serverConfig: {
-      baseUrl: "https://yourtenant.forgeblocks.com/am/",
+      baseUrl: "https://openam-uni-nico.forgeblocks.com/am/",
       timeout: "9000",
     },
     realmPath: "alpha",
@@ -155,14 +155,16 @@ const handlers = {
     const isLocationRequired = deviceCollectorCB.isLocationRequired();
     const isMetadataRequired = deviceCollectorCB.isMetadataRequired();
 
-    const device = new forgerock.FRDevice /* DONE CUSTOMDEVICE */({
-      // Collect just the presence of Arial and Helvetica
-      fontNames: ["Arial", "Helvetica"],
-      // Do not collect any display properties
-      displayProps: [],
-      // Just collect User Agent
-      browserProps: ["userAgent"],
-    });
+    const device = new forgerock.FRDevice(
+      /* DONE CUSTOMDEVICE */ {
+        // Collect just the presence of Arial and Helvetica
+        fontNames: ["Arial", "Helvetica"],
+        // Do not collect any display properties
+        displayProps: [],
+        // Just collect User Agent
+        browserProps: ["userAgent"],
+      }
+    );
 
     const profile = await device.getProfile({
       location: isLocationRequired,
