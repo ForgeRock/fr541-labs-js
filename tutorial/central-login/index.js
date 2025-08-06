@@ -14,7 +14,7 @@ const configForgerock = () => {
     redirectUri: "https://sdkapp.example.com:8443/central-login/",
     scope: "openid profile",
     serverConfig: {
-      baseUrl: "https://openam-uni-nico.forgeblocks.com/am/",
+      baseUrl: "https://yourtenant.forgeblocks.com/am/",
       timeout: "10000",
     },
     realmPath: "alpha",
