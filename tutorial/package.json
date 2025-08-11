@@ -13,7 +13,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
-    "start": "http-server . -c1 -p 8443 --cors.origin https://yourtenant.forgeblocks.com --cors.credentials --ssl --cert certs/fec.crt --key certs/fec.key",
+    "start": "npm run build && http-server . -c1 -p 8443 --cors.origin https://yourtenant.forgeblocks.com --cors.credentials --ssl --cert certs/fec.crt --key certs/fec.key",
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
