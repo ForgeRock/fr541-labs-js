@@ -242,12 +242,12 @@ const logout = async () => {
 
 async function displayPage() {
   const url = new URL(window.location.href);
-  // TODO SOCIAL: urlparam
+  //TODO SOCIAL: urlparam
 
   //TODO SUSPENDED: urlparam
 
   //TODO SUSPENDED: resume
-  
+
   nextStep();
 }
 
