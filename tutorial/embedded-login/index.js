@@ -245,6 +245,8 @@ async function displayPage() {
   //TODO SUSPENDED: urlparam
 
   //TODO SUSPENDED: resume
+
+  nextStep();
 }
 
 configForgerock();
