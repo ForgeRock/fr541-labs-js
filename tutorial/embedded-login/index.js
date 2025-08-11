@@ -264,7 +264,7 @@ const logout = async () => {
 
 async function displayPage() {
   const url = new URL(window.location.href);
-  // TODO SOCIAL: urlparam
+  //TODO SOCIAL: urlparam
 
   //DONE SUSPENDED: urlparam
   const suspId = url.searchParams.get("suspendedId");
