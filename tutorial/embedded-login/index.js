@@ -149,46 +149,9 @@ const handlers = {
     nextStep(step);
   },
 
-  //DONE DEVICE: handle DeviceCallback
-  Device: async (step) => {
-    const deviceCollectorCB = step.getCallbackOfType("DeviceProfileCallback");
-    const isLocationRequired = deviceCollectorCB.isLocationRequired();
-    const isMetadataRequired = deviceCollectorCB.isMetadataRequired();
+  //TODO DEVICE: handle DeviceCallback
 
-    const device = new forgerock.FRDevice /* TODO CUSTOMDEVICE */(
-      
-    );
-
-    const profile = await device.getProfile({
-      location: isLocationRequired,
-      metadata: isMetadataRequired,
-    });
-
-    console.log("device profile: " + profile);
-
-    deviceCollectorCB.setProfile(profile);
-    nextStep(step);
-  },
-
-  //DONE DEVICE: handle ChoiceCallback
-  Choice: (step) => {
-    const panel = document.querySelector("#Choice");
-    const selectElement = panel.querySelector("#SelectElement");
-
-    const choiceCallback = step.getCallbackOfType("ChoiceCallback");
-
-    choiceCallback.getChoices().forEach((p) => {
-      const opt = document.createElement("option");
-      opt.value = p;
-      opt.innerHTML = p;
-      selectElement.appendChild(opt);
-    });
-
-    panel.querySelector(".btn").addEventListener("click", () => {
-      choiceCallback.setChoiceValue(selectElement.value);
-      nextStep(step);
-    });
-  },
+  //TODO DEVICE: handle ChoiceCallback
 
   Error: (step) => {
     document.querySelector("#Error span").innerHTML = step.getCode();
@@ -271,17 +234,9 @@ const getStage = (step) => {
     return "WebAuthnAuthn";
   }
 
-  //DONE DEVICE: device step
-  const deviceCollectorCBs = step.getCallbacksOfType("DeviceProfileCallback");
-  if (deviceCollectorCBs.length) {
-    return "Device";
-  }
+  //TODO DEVICE: device step
 
-  //DONE DEVICE: choice step
-  const choiceCallbacks = step.getCallbacksOfType("ChoiceCallback");
-  if (choiceCallbacks.length) {
-    return "Choice";
-  }
+  //TODO DEVICE: choice step
 
   //DONE SOCIAL: redirect
   const redirectCallbacks = step.getCallbacksOfType("RedirectCallback");
