@@ -263,6 +263,7 @@ const logout = async () => {
 };
 
 async function displayPage() {
+  const url = new URL(window.location.href);
   //TODO SOCIAL: url
 
   //DONE SUSPENDED: urlparam
