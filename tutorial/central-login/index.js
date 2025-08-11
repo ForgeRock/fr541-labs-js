@@ -14,7 +14,7 @@ const configForgerock = () => {
     redirectUri: "https://sdkapp.example.com:8443/central-login/",
     scope: "openid profile",
     serverConfig: {
-      baseUrl: "https://openam-aic330nico.forgeblocks.com/am/",
+      baseUrl: "https://yourtenant.forgeblocks.com/am/",
       timeout: "10000",
     },
     realmPath: "alpha",
@@ -73,9 +73,10 @@ const authorize = async (code, state) => {
 async function displayPage() {
   //DONE CENTRAL: login
   document.querySelector("#loginBtn").addEventListener("click", async () => {
+    console.log("Login clicked");
     await forgerock.TokenManager.getTokens({ login: "redirect" });
-    const user = await forgerock.UserManager.getCurrentUser();
-    showUser(user);
+    // const user = await forgerock.UserManager.getCurrentUser();
+    // showUser(user);
   });
 
   document
@@ -85,8 +86,6 @@ async function displayPage() {
         login: "redirect",
         forceRenew: true,
       });
-      const user = await forgerock.UserManager.getCurrentUser();
-      showUser(user);
     });
 
   /**
