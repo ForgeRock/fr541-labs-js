@@ -116,25 +116,7 @@ const handlers = {
       .getMessage();
   },
 
-  //DONE SOCIAL: selectidp
-  SelectIdPCallback: (step) => {
-    const panel = document.querySelector("#SelectIdPCallback");
-    const selectElement = panel.querySelector("#SelectElement");
-
-    const selectIdPCallback = step.getCallbackOfType("SelectIdPCallback");
-
-    selectIdPCallback.getProviders().forEach((p) => {
-      const opt = document.createElement("option");
-      opt.value = p.provider;
-      opt.innerHTML = p.provider;
-      selectElement.appendChild(opt);
-    });
-
-    panel.querySelector(".btn").addEventListener("click", () => {
-      selectIdPCallback.setProvider(selectElement.value);
-      nextStep(step);
-    });
-  },
+  //TODO SOCIAL: selectidp
 
   //TODO WEBAUTHN: handlers
 
@@ -209,11 +191,7 @@ const getStage = (step) => {
     return "PasswordOnly";
   }
 
-  //DONE SOCIAL: idpcallback
-  const selectIdPCallbacks = step.getCallbacksOfType("SelectIdPCallback");
-  if (selectIdPCallbacks.length) {
-    return "SelectIdPCallback";
-  }
+  //TODO SOCIAL: idpcallback
 
   //TODO WEBAUTHN: webauthn steps
 
@@ -221,11 +199,7 @@ const getStage = (step) => {
 
   //TODO DEVICE: choice step
 
-  //DONE SOCIAL: redirect
-  const redirectCallbacks = step.getCallbacksOfType("RedirectCallback");
-  if (redirectCallbacks.length) {
-    forgerock.FRAuth.redirect(step);
-  }
+  //TODO SOCIAL: redirect
 
   //DONE SUSPENDED: step
   const suspendCallbacks = step.getCallbacksOfType(
@@ -289,10 +263,7 @@ const logout = async () => {
 };
 
 async function displayPage() {
-  // DONE SOCIAL: url
-  const url = new URL(window.location.href);
-  const code = url.searchParams.get("code");
-  const state = url.searchParams.get("state");
+  //TODO SOCIAL: url
 
   //DONE SUSPENDED: urlparam
   const suspId = url.searchParams.get("suspendedId");
